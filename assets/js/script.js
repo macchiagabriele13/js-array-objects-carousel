@@ -43,7 +43,7 @@ const slidesEl = document.querySelector(".slides")
 
 /* Creo il ciclo e inserisco l'immagine, */
 
-let activeImage = 0
+let activeSlide = 0
 
 for (let i = 0; i < images.length; i++) {
     const singleImage = images[i];
@@ -52,21 +52,29 @@ for (let i = 0; i < images.length; i++) {
 
 
     /* let imageMarkup; 
-    if (i === activeImage) {
+    if (i === activeSlide) {
        imageMarkup = `<img class="active" src="${singleImage}" alt="">`
     } else {
         imageMarkup = `<img class="" src="${singleImage}" alt="">`
         
     } */
 
-    const imageMarkup = `<img class="${i === activeImage ? 'active' : ''}" src="${imageElement}" alt="">`
+    const slideMarkup = `<div class="slide">
+    <img class="" src="${imageElement}" alt="">
+    <div class="card_overlay">
+        <div class="text_overlay">
+            <h3>${singleImage.title}</h3>
+            <p>${singleImage.text}</p>
+        </div>
+    </div>
+</div>`
 
-    slidesEl.insertAdjacentHTML("beforeend", imageMarkup)
+    slidesEl.insertAdjacentHTML("beforeend", slideMarkup)
 
 }
 
 /* Creo la variabile per definire active e la posiziono sopra il ciclo */
-/* let activeImage */
+/* let activeSlide */
 
 /* seleziono bottoni avanti e indietro */
 
@@ -84,28 +92,28 @@ nextButtonEl.addEventListener('click', function () {
     console.log(currentImage); */
 
     /* Selezione con query selector all */
-    const slides = document.querySelectorAll('.slides > img')
-    const currentImage = slides[activeImage]
-    console.log(currentImage);
+    const slides = document.querySelectorAll('.slides > .slide')
+    const currentSlide = slides[activeSlide]
+    console.log(currentSlide);
 
     /* Tolgo classe active */
-    currentImage.classList.remove("active")
+    currentSlide.classList.remove("active")
 
     /* Incremento immagine */
-    activeImage++
+    activeSlide++
 
     /* Seleziono nuova immagine */
     /*  const nextImage = document.querySelector('.slides > img.active')
      console.log(currentImage); */
 
-    let nextImage = slides[activeImage]
+    let nextImage = slides[activeSlide]
     console.log(nextImage);
     
     /* Ciclo infinito */
 
-    if (activeImage > images.length -1) {
-        activeImage = 0
-        nextImage = slides[activeImage]
+    if (activeSlide > images.length -1) {
+        activeSlide = 0
+        nextImage = slides[activeSlide]
     
         
     } 
@@ -120,27 +128,27 @@ prevButtonEl.addEventListener('click', function () {
 
     /* Selezione con query selector all */
     const slides = document.querySelectorAll('.slides > img')
-    const currentImage = slides[activeImage]
+    const currentImage = slides[activeSlide]
     console.log(currentImage);
 
     /* Tolgo classe active */
     currentImage.classList.remove("active")
 
     /* Decremento immagine */
-    activeImage--
+    activeSlide--
 
     /* Seleziono nuova immagine */
     /*  const nextImage = document.querySelector('.slides > img.active')
     console.log(currentImage); */
 
-    let nextImage = slides[activeImage]
+    let nextImage = slides[activeSlide]
     console.log(nextImage);
 
 
-    if (activeImage < 0) {
-        activeImage = images.length -1 
-        console.log(activeImage);
-        nextImage = slides[activeImage]
+    if (activeSlide < 0) {
+        activeSlide = images.length -1 
+        console.log(activeSlide);
+        nextImage = slides[activeSlide]
         
     }
 
