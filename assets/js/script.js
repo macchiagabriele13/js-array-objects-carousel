@@ -51,27 +51,32 @@ for (let i = 0; i < images.length; i++) {
     console.log(imageElement);
 
 
-    /* let imageMarkup; 
-    if (i === activeSlide) {
-       imageMarkup = `<img class="active" src="${singleImage}" alt="">`
-    } else {
-        imageMarkup = `<img class="" src="${singleImage}" alt="">`
-        
-    } */
+    // let activeClass;
+    // if (i === activeSlide) {
+    //     activeClass = 'active';
+    // }
 
-    const slideMarkup = `<div class="slide">
-    <img class="" src="${imageElement}" alt="">
-    <div class="card_overlay">
-        <div class="text_overlay">
-            <h3>${singleImage.title}</h3>
-            <p>${singleImage.text}</p>
-        </div>
-    </div>
-</div>`
+    const activeClass = (i === activeSlide) ? 'active' : '';
+
+    const slideMarkup = createMarkup(activeClass, imageElement, singleImage)
 
     slidesEl.insertAdjacentHTML("beforeend", slideMarkup)
 
 }
+
+function createMarkup (classe, immagine, immagineSingola) {
+    const markup = `<div class="slide ${classe}">
+                <img class="" src="${immagine}" alt="">
+                <div class="card_overlay">
+                    <div class="text_overlay">
+                        <h3>${immagineSingola.title}</h3>
+                        <p>${immagineSingola.text}</p>
+                    </div>
+                </div>
+            </div>`;
+    return markup;
+}
+
 
 /* Creo la variabile per definire active e la posiziono sopra il ciclo */
 /* let activeSlide */
